@@ -24,7 +24,8 @@ exports.initialize = function(server) {
                 var comSocket = self.chatCom.sockets[socket.id];
                 comSocket.join(room.name);
                 comSocket.room = room.name;
-                socket.in(socket.room).broadcast.emit('user_entered', {'name':nickname});
+                // socket.in(socket.room).broadcast.emit('user_entered', {'name':nickname});
+                socket.in(room.name).broadcast.emit('user_entered', {'name':nickname});
             });
         });
     });
@@ -36,7 +37,7 @@ exports.initialize = function(server) {
             if (message.type == "userMessage") {
                 socket.get('nickname', function(err, nickname) {
                     message.username = nickname;
-                    socket.broadcast.send(JSON.stringify(message));
+                    socket.in(socket.room).broadcast.send(JSON.stringify(message));
                     message.type = "myMessage";
                     socket.send(JSON.stringify(message));
                 });

@@ -63,12 +63,12 @@ $(function() {
     });
 
     $('#setname').click(function(){
-       chatCom.emit("set_name", {name: $('#nickname').val()});
+       chatInfra.emit("set_name", {name: $('#nickname').val()});
     });
 
     function submit() {
         var data = {
-            message: $('#message').val(),
+            message: $('#input_message').val(),
             type: 'userMessage'
         };
         chatCom.send(JSON.stringify(data));
