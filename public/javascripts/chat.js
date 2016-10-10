@@ -24,8 +24,6 @@ if (roomName) {
 
         $("#nameform").hide();
         $("#messages").append('<div class="systemMessage">Hello '+data.name+'</div>');
-
-        submit();
     });
 }
 
