@@ -1,5 +1,9 @@
 extends layout
 
+block append head
+    script(type='text/javascript', src='/socket.io/socket.io.js')
+    script(type='text/javascript', src='/javascripts/rooms.js')
+
 block content
     section#chatrooms
         div#new_room
@@ -9,8 +13,4 @@ block content
         div#allrooms
             div#header Or join a room
             div#rooms_list
-block script
 
-block append script
-    script(type='text/javascript', src='/socket.io/socket.io.js')
-    script(type='text/javascript', src='/javascripts/rooms.js')

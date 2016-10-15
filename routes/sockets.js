@@ -14,7 +14,7 @@ exports.initialize = function(server) {
                     message: 'Welcome to the most interesting chat room on earth!'
                 }));
 
-                socket.broadcast.emit('user_entered', data);
+                // socket.broadcast.emit('user_entered', data);
             });
         });
 
@@ -24,7 +24,6 @@ exports.initialize = function(server) {
                 var comSocket = self.chatCom.sockets[socket.id];
                 comSocket.join(room.name);
                 comSocket.room = room.name;
-                // socket.in(socket.room).broadcast.emit('user_entered', {'name':nickname});
                 socket.in(room.name).broadcast.emit('user_entered', {'name':nickname});
             });
         });
@@ -34,8 +33,8 @@ exports.initialize = function(server) {
             for (var room in io.sockets.manager.rooms) {
                 if (room.indexOf("/chat_infra/") == 0) {
                     var roomName = room.replace("/chat_infra/", "");
-                    rooms[roomName] = io.sockets.manager
-                    rooms[room].length;
+                    rooms[roomName] = io.sockets.manager.rooms[room].length;
+                    console.log(rooms[roomName]);
                 }
             }
             socket.emit("rooms_list", rooms);

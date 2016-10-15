@@ -14,7 +14,6 @@ chatInfra.on("connect", function() {
 });
 $(function() {
     $('#new_room_btn').click(function() {
-        window.location = '/chatroom?room=' +
-            $('#new_room_name').val();
+        window.location = '/chatroom?room=' + $('#new_room_name').val();
     });
 });
